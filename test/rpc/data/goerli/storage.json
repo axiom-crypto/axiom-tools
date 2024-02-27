@@ -1,0 +1,36 @@
+{
+    "get storage slot": [
+        {
+            "subquery": {
+                "blockNumber": 9000000,
+                "addr": "0xDA5F92B81B7095b5763a09BD4A668DcfE6F3b133",
+                "slot": "0x0000000000000000000000000000000000000000000000000000000000000002"
+            },
+            "value": "0x00000000000000000000000048e0d32edc750cae2d592d317c0e4d4cf20bf657"
+        },
+        {
+            "subquery": {
+                "blockNumber": 9000000,
+                "addr": "0xDA5F92B81B7095b5763a09BD4A668DcfE6F3b133",
+                "slot": "2"
+            },
+            "value": "0x00000000000000000000000048e0d32edc750cae2d592d317c0e4d4cf20bf657"
+        },
+        {
+            "subquery": {
+                "blockNumber": 100000,
+                "addr": "0xDA5F92B81B7095b5763a09BD4A668DcfE6F3b133",
+                "slot": "2"
+            },
+            "value": "0x0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+            "subquery": {
+                "blockNumber": 9000000,
+                "addr": "0x123",
+                "slot": "2"
+            },
+            "value": null
+        }
+    ]
+}

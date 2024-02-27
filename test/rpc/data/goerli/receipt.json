@@ -1,0 +1,108 @@
+{
+    "get problem receipt field value (log data size too large)": [
+        {
+            "subquery": {
+                "blockNumber": 9000006,
+                "txIdx": 6,
+                "fieldOrLogIdx": 0,
+                "eventSchema": "0x",
+                "topicOrDataOrAddressIdx": 0
+            },
+            "value": "0x0000000000000000000000000000000000000000000000000000000000000001"
+        }
+    ],
+    "get receipt field value": [
+        {
+            "subquery": {
+                "blockNumber": 9800000,
+                "txIdx": 5,
+                "fieldOrLogIdx": 0,
+                "eventSchema": "0x",
+                "topicOrDataOrAddressIdx": 0
+            },
+            "value": "0x0000000000000000000000000000000000000000000000000000000000000001"
+        }
+    ],
+    "get receipt logsBloom field value": [
+        {
+            "subquery": {
+                "blockNumber": 9800000,
+                "txIdx": 5,
+                "fieldOrLogIdx": 70,
+                "topicOrDataOrAddressIdx": 0,
+                "eventSchema": ""
+            },
+            "value": "0x0000000100000000000000000100000000000000000000000000000800000000"
+        },
+        {
+            "subquery": {
+                "blockNumber": 9800000,
+                "txIdx": 5,
+                "fieldOrLogIdx": 71,
+                "topicOrDataOrAddressIdx": 0,
+                "eventSchema": ""
+            },
+            "value": "0x0000000000000000000000000000000000100000000000000000000000200200"
+        },
+        {
+            "subquery": {
+                "blockNumber": 9800000,
+                "txIdx": 5,
+                "fieldOrLogIdx": 72,
+                "topicOrDataOrAddressIdx": 0,
+                "eventSchema": ""
+            },
+            "value": "0x0000000000000000000000080000000000000000000000000000000000000000"
+        },
+        {
+            "subquery": {
+                "blockNumber": 9800000,
+                "txIdx": 5,
+                "fieldOrLogIdx": 73,
+                "topicOrDataOrAddressIdx": 0,
+                "eventSchema": ""
+            },
+            "value": "0x0000000002000000002000000000080000000000000000000000001000000000"
+        },
+        {
+            "subquery": {
+                "blockNumber": 9800000,
+                "txIdx": 5,
+                "fieldOrLogIdx": 74,
+                "topicOrDataOrAddressIdx": 0,
+                "eventSchema": ""
+            },
+            "value": "0x0000000000000000000000000000000100000000000000000000000000000000"
+        },
+        {
+            "subquery": {
+                "blockNumber": 9800000,
+                "txIdx": 5,
+                "fieldOrLogIdx": 75,
+                "topicOrDataOrAddressIdx": 0,
+                "eventSchema": ""
+            },
+            "value": "0x0200000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+            "subquery": {
+                "blockNumber": 9800000,
+                "txIdx": 5,
+                "fieldOrLogIdx": 76,
+                "topicOrDataOrAddressIdx": 0,
+                "eventSchema": ""
+            },
+            "value": "0x0000000200000000000000000000000000000000000000000000000000002000"
+        },
+        {
+            "subquery": {
+                "blockNumber": 9800000,
+                "txIdx": 5,
+                "fieldOrLogIdx": 77,
+                "topicOrDataOrAddressIdx": 0,
+                "eventSchema": ""
+            },
+            "value": "0x0010000800000000000000000000100000000000000000000000800000010000"
+        }
+    ]
+}

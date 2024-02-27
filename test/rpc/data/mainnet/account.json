@@ -1,0 +1,52 @@
+{
+    "get account fields": [
+        {
+            "subquery": {
+                "blockNumber": 17000000,
+                "addr": "0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0",
+                "fieldIdx": 0
+            },
+            "value": "0x0000000000000000000000000000000000000000000000000000000000000001"
+        },
+        {
+            "subquery": {
+                "blockNumber": 17000000,
+                "addr": "0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0",
+                "fieldIdx": 1
+            },
+            "value": "0x0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+            "subquery": {
+                "blockNumber": 17000000,
+                "addr": "0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0",
+                "fieldIdx": 2
+            },
+            "value": "0x66a0a9d9907588caf1afa4f3bc03839e2c4a23a720c4701f033e2ab7f28c6b48"
+        },
+        {
+            "subquery": {
+                "blockNumber": 17000000,
+                "addr": "0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0",
+                "fieldIdx": 3
+            },
+            "value": "0x8b0a83a4cd51e97515c5898d296297d96c5377467369ec0ff432948c3ae995f2"
+        },
+        {
+            "subquery": {
+                "blockNumber": 100000,
+                "addr": "0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0",
+                "fieldIdx": 0
+            },
+            "value": "0x0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+            "subquery": {
+                "blockNumber": 17000000,
+                "addr": "0x123",
+                "fieldIdx": 0
+            },
+            "value": "0x0000000000000000000000000000000000000000000000000000000000000000"
+        }
+    ]
+}

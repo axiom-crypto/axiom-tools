@@ -1,0 +1,204 @@
+{
+    "get header fields": [
+        {
+            "subquery": {
+                "blockNumber": 17000000,
+                "fieldIdx": 0
+            },
+            "value": "0xe464691f28218637d00ac4d694a86c0e01044b0a76b357b997e575be6d4cc135"
+        },
+        {
+            "subquery": {
+                "blockNumber": 17000000,
+                "fieldIdx": 1
+            },
+            "value": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347"
+        },
+        {
+            "subquery": {
+                "blockNumber": 17000000,
+                "fieldIdx": 2
+            },
+            "value": "0x000000000000000000000000690b9a9e9aa1c9db991c7721a92d351db4fac990"
+        },
+        {
+            "subquery": {
+                "blockNumber": 17000000,
+                "fieldIdx": 3
+            },
+            "value": "0x72eea852168e4156811869d6e40789083891288161d5a110259cf4fc922b1a09"
+        },
+        {
+            "subquery": {
+                "blockNumber": 17000000,
+                "fieldIdx": 4
+            },
+            "value": "0x06ca3364e7ff05c6adad066d09dd50edc25e7935a7aa0bdb2f4ce07d2f5bf82e"
+        },
+        {
+            "subquery": {
+                "blockNumber": 17000000,
+                "fieldIdx": 5
+            },
+            "value": "0xdafc7e17d609503a08b1406eb69c714cb3e7ba51e84580977c449999068ae513"
+        },
+        {
+            "subquery": {
+                "blockNumber": 17000000,
+                "fieldIdx": 6
+            },
+            "value": "0x00a5800311003514143110248118186108f900001a860055664930042204b7b9"
+        },
+        {
+            "subquery": {
+                "blockNumber": 17000000,
+                "fieldIdx": 7
+            },
+            "value": "0x0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+            "subquery": {
+                "blockNumber": 17000000,
+                "fieldIdx": 8
+            },
+            "value": "0x0000000000000000000000000000000000000000000000000000000001036640"
+        },
+        {
+            "subquery": {
+                "blockNumber": 17000000,
+                "fieldIdx": 9
+            },
+            "value": "0x0000000000000000000000000000000000000000000000000000000001c9c380"
+        },
+        {
+            "subquery": {
+                "blockNumber": 17000000,
+                "fieldIdx": 10
+            },
+            "value": "0x00000000000000000000000000000000000000000000000000000000008bc84a"
+        },
+        {
+            "subquery": {
+                "blockNumber": 17000000,
+                "fieldIdx": 11
+            },
+            "value": "0x000000000000000000000000000000000000000000000000000000006430ae13"
+        },
+        {
+            "subquery": {
+                "blockNumber": 17000000,
+                "fieldIdx": 12
+            },
+            "value": "0x627920406275696c646572307836390000000000000000000000000000000000"
+        },
+        {
+            "subquery": {
+                "blockNumber": 17000000,
+                "fieldIdx": 13
+            },
+            "value": "0x508cf9f7faca2553230266065ff45109c2a25c2a55138f4176fd5228a7339b77"
+        },
+        {
+            "subquery": {
+                "blockNumber": 17000000,
+                "fieldIdx": 14
+            },
+            "value": "0x0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+            "subquery": {
+                "blockNumber": 17000000,
+                "fieldIdx": 15
+            },
+            "value": "0x00000000000000000000000000000000000000000000000000000004cad3abe1"
+        },
+        {
+            "subquery": {
+                "blockNumber": 18000000,
+                "fieldIdx": 16
+            },
+            "value": "0x5362ee94b61e8cef92bf61353e62744b4fe6d1f2482aade614054527e6d5de7d"
+        }
+    ],
+    "get special header fields": [
+        {
+            "subquery": {
+                "blockNumber": 18000000,
+                "fieldIdx": 50
+            },
+            "value": "0x95b198e154acbfc64109dfd22d8224fe927fd8dfdedfae01587674482ba4baf3"
+        },
+        {
+            "subquery": {
+                "blockNumber": 18000000,
+                "fieldIdx": 51
+            },
+            "value": "0x0000000000000000000000000000000000000000000000000000000000000245"
+        },
+        {
+            "subquery": {
+                "blockNumber": 18000000,
+                "fieldIdx": 52
+            },
+            "value": "0x000000000000000000000000000000000000000000000000000000000000001f"
+        }
+    ],
+    "get header field logs bloom": [
+        {
+            "subquery": {
+                "blockNumber": 17000001,
+                "fieldIdx": 70
+            },
+            "value": "0x29e9a99459081741308e5064c99018631275f410482642d0659b400c2ec61180"
+        },
+        {
+            "subquery": {
+                "blockNumber": 17000001,
+                "fieldIdx": 71
+            },
+            "value": "0x39a205e0c4900833243ab98ce722079106010021c880be30134c171124b6eb2c"
+        },
+        {
+            "subquery": {
+                "blockNumber": 17000001,
+                "fieldIdx": 72
+            },
+            "value": "0x0450411045283a487a87520ccb96127996154843004d0fcc6010d54498281a51"
+        },
+        {
+            "subquery": {
+                "blockNumber": 17000001,
+                "fieldIdx": 73
+            },
+            "value": "0x8a0182009223cc620604d0030440ae2b0c00a2540078e70ac208c5d0035e0944"
+        },
+        {
+            "subquery": {
+                "blockNumber": 17000001,
+                "fieldIdx": 74
+            },
+            "value": "0x10e013172f2c28d8384808a88c68820148a2cc65b30ad52944a8406021fe1c84"
+        },
+        {
+            "subquery": {
+                "blockNumber": 17000001,
+                "fieldIdx": 75
+            },
+            "value": "0x8b6a99080d44ee2982a28dfb3ebccc81400fc2d0d4a1844b09e42c47a81b1c13"
+        },
+        {
+            "subquery": {
+                "blockNumber": 17000001,
+                "fieldIdx": 76
+            },
+            "value": "0x4809201230242a00202080060e64509242ce4020c4cbaa7e44276bae1150e044"
+        },
+        {
+            "subquery": {
+                "blockNumber": 17000001,
+                "fieldIdx": 77
+            },
+            "value": "0x0638e2a809408b840246b184011f0a01c3f0c422c17f0243105579cba810b412"
+        }
+    ]
+}

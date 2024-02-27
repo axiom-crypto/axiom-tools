@@ -1,0 +1,160 @@
+{
+    "get tx field value": [
+        {
+            "subquery": {
+                "blockNumber": 9800000,
+                "txIdx": 5,
+                "fieldOrCalldataIdx": 0
+            },
+            "value": "0x0000000000000000000000000000000000000000000000000000000000000005"
+        },
+        {
+            "subquery": {
+                "blockNumber": 9800000,
+                "txIdx": 5,
+                "fieldOrCalldataIdx": 1
+            },
+            "value": "0x000000000000000000000000000000000000000000000000000000000000595c"
+        },
+        {
+            "subquery": {
+                "blockNumber": 9800000,
+                "txIdx": 5,
+                "fieldOrCalldataIdx": 2
+            },
+            "value": "0x000000000000000000000000000000000000000000000000000000003b9aca00"
+        },
+        {
+            "subquery": {
+                "blockNumber": 9800000,
+                "txIdx": 5,
+                "fieldOrCalldataIdx": 3
+            },
+            "value": "0x000000000000000000000000000000000000000000000000000000003b9aca08"
+        },
+        {
+            "subquery": {
+                "blockNumber": 9800000,
+                "txIdx": 5,
+                "fieldOrCalldataIdx": 4
+            },
+            "value": "0x0000000000000000000000000000000000000000000000000000000000041eb0"
+        },
+        {
+            "subquery": {
+                "blockNumber": 9800000,
+                "txIdx": 5,
+                "fieldOrCalldataIdx": 5
+            },
+            "value": "0x00000000000000000000000091e0cd8f88ce149eba355c4d37750230b8ab2c60"
+        },
+        {
+            "subquery": {
+                "blockNumber": 9800000,
+                "txIdx": 5,
+                "fieldOrCalldataIdx": 6
+            },
+            "value": "0x000000000000000000000000000000000000000000000000000110d9316ec000"
+        }
+    ],
+    "get problem tx field value": [
+        {
+            "subquery": {
+                "blockNumber": 9000006,
+                "txIdx": 6,
+                "fieldOrCalldataIdx": 0
+            },
+            "value": "0x0000000000000000000000000000000000000000000000000000000000000005"
+        },
+        {
+            "subquery": {
+                "blockNumber": 9000006,
+                "txIdx": 6,
+                "fieldOrCalldataIdx": 1
+            },
+            "value": "0x0000000000000000000000000000000000000000000000000000000000000017"
+        },
+        {
+            "subquery": {
+                "blockNumber": 9000006,
+                "txIdx": 6,
+                "fieldOrCalldataIdx": 2
+            },
+            "value": "0x00000000000000000000000000000000000000000000000000000000b2d05e00"
+        },
+        {
+            "subquery": {
+                "blockNumber": 9000006,
+                "txIdx": 6,
+                "fieldOrCalldataIdx": 3
+            },
+            "value": "0x00000000000000000000000000000000000000000000000000000000b2d05e0f"
+        },
+        {
+            "subquery": {
+                "blockNumber": 9000006,
+                "txIdx": 6,
+                "fieldOrCalldataIdx": 4
+            },
+            "value": "0x0000000000000000000000000000000000000000000000000000000000022d36"
+        },
+        {
+            "subquery": {
+                "blockNumber": 9000006,
+                "txIdx": 6,
+                "fieldOrCalldataIdx": 5
+            },
+            "value": "0x000000000000000000000000c92470d7ffa21473611ab6c6e2fcfb8637c8f330"
+        },
+        {
+            "subquery": {
+                "blockNumber": 9000006,
+                "txIdx": 6,
+                "fieldOrCalldataIdx": 6
+            },
+            "value": "0x000000000000000000000000000000000000000000000000016345785d8a0000"
+        }
+    ],
+    "get tx special field values": [
+        {
+            "subquery": {
+                "blockNumber": 9100000,
+                "txIdx": 28,
+                "fieldOrCalldataIdx": 51
+            },
+            "value": "0x0000000000000000000000000000000000000000000000000000000000000000"
+        },
+        {
+            "subquery": {
+                "blockNumber": 9100000,
+                "txIdx": 28,
+                "fieldOrCalldataIdx": 52
+            },
+            "value": "0x00000000000000000000000000000000000000000000000000000000008adae0"
+        },
+        {
+            "subquery": {
+                "blockNumber": 9100000,
+                "txIdx": 28,
+                "fieldOrCalldataIdx": 53
+            },
+            "value": "0x000000000000000000000000000000000000000000000000000000000000001c"
+        },
+        {
+            "subquery": {
+                "blockNumber": 9100000,
+                "txIdx": 28,
+                "fieldOrCalldataIdx": 54
+            },
+            "value": "0x00000000000000000000000000000000000000000000000000000000252f7b01"
+        },
+        {
+            "subquery": {
+                "blockNumber": 9100000,
+                "txIdx": 28,
+                "fieldOrCalldataIdx": 55
+            },
+            "value": "0xd8d41e3ec0a93d8e1626c20e08e8bf3095681a99dbe6ad9da71145cf2ca04c00"
+        }
+    ]
+}
