@@ -38,13 +38,6 @@ describe("IPFS client tests", () => {
       expect(encoded).toEqual(encodedQuery);
     });
 
-    test(`${client.getName()} Read from IPFS via bytes32 hash`, async () => {
-      const encoded = await client.read("0x3F7E830DE97A6D8ECB12EB823DEFEB348DB30C3C67B61F33E6EFC5C3DCEABEAA");
-      const decoded = decodeFullQueryV2(encoded);
-      
-      expect(encoded).toEqual(decoded.);
-    }, 20000);
-
     for (const cid of Object.values(CIDS)) {
       test(`${client.getName()} Get pinned object size for CID ${cid}`, async () => {
         const size = await client.getSize(cid);
