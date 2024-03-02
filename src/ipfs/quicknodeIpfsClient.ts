@@ -41,7 +41,10 @@ export class QuicknodeIpfsClient extends IpfsClient {
           "x-api-key": this.apiKey,
         },
       });
-      return res.data.data ?? null;
+      if (res.data.data) {
+        return res.data.data;
+      }
+      return res.data ?? null;
     } catch (e: any) {
       console.error(e?.message);
       return null;
