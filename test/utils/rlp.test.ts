@@ -53,7 +53,7 @@ describe("RLP Sepolia", () => {
       const rlpHash = ethers.keccak256(rlp);
       expect(rlpHash).toEqual(block.hash);
     }
-  });
+  }, 10000);
 
   test("check sepolia RLP transactions of different types", async () => {
     for await (const txHash of sepoliaTransactions) {
@@ -65,5 +65,5 @@ describe("RLP Sepolia", () => {
       const rlpHash = ethers.keccak256(rlp);
       expect(rlpHash).toEqual(tx.hash);
     }
-  });
+  }, 10000);
 });

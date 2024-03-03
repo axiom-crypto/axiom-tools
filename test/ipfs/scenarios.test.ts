@@ -16,7 +16,6 @@ describe("Additional IPFS scenarios to test", () => {
   test(`Large IPFS data`, async () => {
     for await (const client of ipfsClients) {
       const pin = await client.pin(LARGE_DATA);
-      console.log("pin", pin);
       if (pin.status - 200 > 99) {
         throw new Error("Failed to write data to IPFS");
       }
@@ -51,8 +50,7 @@ describe("Additional IPFS scenarios to test", () => {
         };
       }
     }
-    console.log(pinnedData);
-  }, 80000);
+  }, 30000);
 
   test(`Read all pinned data`, async () => {
     for await (const client of ipfsClients) {
