@@ -1,5 +1,10 @@
 import bs58 from 'bs58';
 
+export interface IpfsResult {
+  status: number;
+  value: string | number | boolean | null;
+}
+
 export abstract class IpfsClient {
   protected name: string;
 
@@ -10,22 +15,22 @@ export abstract class IpfsClient {
   // Get the character length of the file
   // @param hashOrCid - IPFS hash in bytes32 or CIDv0
   // @returns - File size in character length
-  abstract getSize(hashOrCid: string): Promise<number | null>;
+  abstract getSize(hashOrCid: string): Promise<IpfsResult>;
 
   // Read a file from IPFS
   // @param hashOrCid - IPFS hash in bytes32 or CIDv0
   // @returns - File content as a string
-  abstract read(hashOrCid: string): Promise<string | null>;
+  abstract read(hashOrCid: string): Promise<IpfsResult>;
 
   // Write a file and pin it to IPFS
   // @param data - File content as a string
   // @returns - IPFS hash in bytes32
-  abstract pin(data: string): Promise<string | null>;
+  abstract pin(data: string): Promise<IpfsResult>;
 
   // Unpin a file from IPFS
   // @param hashOrCid - IPFS hash in bytes32 or CIDv0
   // @returns - Whether the unpinning was successful
-  abstract unpin(hashOrCid: string): Promise<boolean>;
+  abstract unpin(hashOrCid: string): Promise<IpfsResult>;
 
   // Convert bytes32 to CIDv0
   // @param bytes32Hex - IPFS hash in bytes32

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IpfsClient } from "./ipfsClient";
+import { IpfsClient, IpfsResult } from "./ipfsClient";
 
 export class PinataIpfsClient extends IpfsClient {
   private pinataJwt: string;
@@ -29,7 +29,7 @@ export class PinataIpfsClient extends IpfsClient {
     return `https://gateway.pinata.cloud/ipfs`;
   }
 
-  async getSize(hashOrCid: string): Promise<number | null> {
+  async getSize(hashOrCid: string): Promise<IpfsResult> {
     try {
       if (hashOrCid.startsWith("0x")) {
         hashOrCid = this.convertBytes32ToIpfsCid(hashOrCid);
@@ -37,14 +37,26 @@ export class PinataIpfsClient extends IpfsClient {
       // Pinata gateway will not return data size on a head request, so we need to use 
       // the public ipfs.io gateway instead.
       const res = await axios.head(`https://ipfs.io/ipfs/${hashOrCid}`);
-      return res.headers["x-ipfs-datasize"] ?? null;
-    } catch (e) {
-      console.error(e);
-      return null;
+      const size = res.headers["x-ipfs-datasize"];
+      if (!size) {
+        return {
+          status: res.status,
+          value: null,
+        }
+      }
+      return {
+        status: res.status,
+        value: size,
+      };
+    } catch (e: any) {
+      return {
+        status: e.response?.status ?? 500,
+        value: e.message,
+      };
     }
   }
 
-  async read(hashOrCid: string): Promise<string | null> {
+  async read(hashOrCid: string): Promise<IpfsResult> {
     try {
       if (hashOrCid.startsWith("0x")) {
         hashOrCid = this.convertBytes32ToIpfsCid(hashOrCid);
@@ -55,14 +67,25 @@ export class PinataIpfsClient extends IpfsClient {
           Authorization: `Bearer ${this.pinataJwt}`,
         }
       });
-      return res.data.data ?? null;
-    } catch (e) {
-      console.error(e);
-      return null;
+      if (!(res.data.data || res.data)) {
+        return {
+          status: res.status,
+          value: null,
+        };
+      }
+      return {
+        status: res.status,
+        value: res.data.data ?? res.data,
+      };
+    } catch (e: any) {
+      return {
+        status: e.response?.status ?? 500,
+        value: e.message,
+      }
     }
   }
 
-  async pin(data: string): Promise<string | null> {
+  async pin(data: string): Promise<IpfsResult> {
     const dataObj = {
       "pinataContent": {
         "data": data,
@@ -83,15 +106,20 @@ export class PinataIpfsClient extends IpfsClient {
           }
         }
       );
-      const hash = res.data.IpfsHash
-      return this.convertIpfsCidToBytes32(hash);
-    } catch (e) {
-      console.error(e);
-      return null;
+      const cid = res.data.IpfsHash
+      return {
+        status: res.status,
+        value: this.convertIpfsCidToBytes32(cid),
+      };
+    } catch (e: any) {
+      return {
+        status: e.response?.status ?? 500,
+        value: null,
+      };
     }
   }
 
-  async unpin(hashOrCid: string): Promise<boolean> {
+  async unpin(hashOrCid: string): Promise<IpfsResult> {
     try {
       if (hashOrCid.startsWith("0x")) {
         hashOrCid = this.convertBytes32ToIpfsCid(hashOrCid);
@@ -101,10 +129,15 @@ export class PinataIpfsClient extends IpfsClient {
           Authorization: `Bearer ${this.pinataJwt}`,
         }
       });
-      return res.status === 200;
+      return {
+        status: res.status,
+        value: true,
+      };
     } catch (e: any) {
-      console.error(e);
-      return false;
+      return {
+        status: e.response?.status ?? 500,
+        value: false,
+      };
     }
   }
 }

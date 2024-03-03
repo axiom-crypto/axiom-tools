@@ -1,6 +1,9 @@
 import axios from 'axios';
 import FormData from 'form-data';
-import { IpfsClient } from "./ipfsClient";
+import { IpfsClient, IpfsResult } from "./ipfsClient";
+
+// Maximum number of pages to get all pinned objects
+const MAX_PAGES = 1000;
 
 export class QuicknodeIpfsClient extends IpfsClient {
   private gatewayUrl: string;
@@ -18,20 +21,32 @@ export class QuicknodeIpfsClient extends IpfsClient {
     this.apiKey = apiKey;
   }
 
-  async getSize(hashOrCid: string): Promise<number | null> {
+  async getSize(hashOrCid: string): Promise<IpfsResult> {
     try {
       if (hashOrCid.startsWith("0x")) {
         hashOrCid = this.convertBytes32ToIpfsCid(hashOrCid);
       }
       const res = await axios.head(`${this.gatewayUrl}/${hashOrCid}`);
-      return res.headers["content-length"] ?? null;
+      const size = res.headers["content-length"];
+      if (!size) {
+        return {
+          status: res.status,
+          value: null,
+        }
+      }
+      return {
+        status: res.status,
+        value: size,
+      };
     } catch (e: any) {
-      console.error(e?.message);
-      return null;
+      return {
+        status: e.response?.status ?? 500,
+        value: e.message,
+      };
     }
   }
 
-  async read(hashOrCid: string): Promise<string | null> {
+  async read(hashOrCid: string): Promise<IpfsResult> {
     try {
       if (hashOrCid.startsWith("0x")) {
         hashOrCid = this.convertBytes32ToIpfsCid(hashOrCid);
@@ -41,17 +56,25 @@ export class QuicknodeIpfsClient extends IpfsClient {
           "x-api-key": this.apiKey,
         },
       });
-      if (res.data.data) {
-        return res.data.data;
+      if (!(res.data.data || res.data)) {
+        return {
+          status: res.status,
+          value: null,
+        };
       }
-      return res.data ?? null;
+      return {
+        status: res.status,
+        value: res.data.data ?? res.data,
+      };
     } catch (e: any) {
-      console.error(e?.message);
-      return null;
+      return {
+        status: e.response?.status ?? 500,
+        value: e.message,
+      }
     }
   }
 
-  async pin(data: string): Promise<string | null> {
+  async pin(data: string): Promise<IpfsResult> {
     const path = Date.now().toString();
     const formdata = new FormData();
     formdata.append("Body", data, path);
@@ -70,14 +93,19 @@ export class QuicknodeIpfsClient extends IpfsClient {
         }
       );
       const cid = res.data.pin.cid;
-      return this.convertIpfsCidToBytes32(cid);
+      return {
+        status: res.status,
+        value: this.convertIpfsCidToBytes32(cid),
+      };
     } catch (e: any) {
-      console.error(e);
-      return null;
+      return {
+        status: e.response?.status ?? 500,
+        value: null,
+      };
     }
   }
 
-  async unpin(hashOrCid: string): Promise<boolean> {
+  async unpin(hashOrCid: string): Promise<IpfsResult> {
     try {
       if (hashOrCid.startsWith("0x")) {
         hashOrCid = this.convertBytes32ToIpfsCid(hashOrCid);
@@ -98,7 +126,7 @@ export class QuicknodeIpfsClient extends IpfsClient {
         res.data.data.forEach((pinnedObject: any) => {
           pinnedCidRequestIds[pinnedObject.cid] = pinnedObject.requestId;
         });
-        if (pageNumber === res.data.totalPages || pageNumber > 1000) {
+        if (pageNumber === res.data.totalPages || pageNumber > MAX_PAGES) {
           break;
         }
         pageNumber++;
@@ -110,10 +138,16 @@ export class QuicknodeIpfsClient extends IpfsClient {
           "x-api-key": this.apiKey,
         },
       });
-      return res.status === 200;
+      
+      return {
+        status: res.status,
+        value: true,
+      };
     } catch (e: any) {
-      console.error(e);
-      return false;
+      return {
+        status: e.response?.status ?? 500,
+        value: false,
+      };
     }
   }
 }
