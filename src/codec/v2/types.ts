@@ -108,6 +108,17 @@ export interface SolidityNestedMappingSubquery extends Subquery {
   keys: string[];
 }
 
+export interface ECDSASubquery extends Subquery {
+  /// The public key is a Secp256k1Affine point represented as (x, y): (Fp, Fp)
+  pubkey: [string, string];
+  /// r: Fq
+  r: string;
+  /// s: Fq
+  s: string;
+  /// The message hash is a 32-byte array
+  msgHash: string;
+}
+
 export interface BeaconValidatorSubquery extends Subquery {
   // WIP
 }
