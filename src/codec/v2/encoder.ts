@@ -9,6 +9,7 @@ import {
   BeaconValidatorSubquery,
   DataSubquery,
   DataSubqueryType,
+  ECDSASubquery,
   HeaderSubquery,
   ReceiptSubquery,
   SolidityNestedMappingSubquery,
@@ -68,13 +69,13 @@ export function encodeQueryV2(
   );
 
   const encodedCallback = encodeCallback(callback.target, callback.extraData);
-  
+
   const encodedFeeData = encodeFeeData(
     feeData.maxFeePerGas,
     feeData.callbackGasLimit,
     feeData.overrideAxiomQueryFee,
   );
-  
+
   return ethers.concat([
     encodedPart0,
     encodedComputeQuery,
@@ -87,7 +88,7 @@ export function encodeQueryV2(
 
 /**
  * Encodes the full AxiomV2Query that can be fully decoded later
- * 
+ *
  */
 export function encodeFullQueryV2(
   sourceChainId: number | string | BigInt,
@@ -109,10 +110,7 @@ export function encodeFullQueryV2(
     [ConstantsV2.VERSION, sourceChainId, caller],
   );
 
-  const encodedDataQuery = encodeDataQuery(
-    dataQuery.sourceChainId,
-    dataQuery.subqueries,
-  )
+  const encodedDataQuery = encodeDataQuery(dataQuery.sourceChainId, dataQuery.subqueries);
 
   const encodedComputeQuery = encodeComputeQuery(
     computeQuery.k,
@@ -122,13 +120,13 @@ export function encodeFullQueryV2(
   );
 
   const encodedCallback = encodeCallback(callback.target, callback.extraData);
-  
+
   const encodedFeeData = encodeFeeData(
     feeData.maxFeePerGas,
     feeData.callbackGasLimit,
     feeData.overrideAxiomQueryFee,
   );
-  
+
   return ethers.concat([
     encodedPart0,
     encodedDataQuery,
@@ -341,10 +339,9 @@ export function encodeDataSubquery(subquery: DataSubquery): string {
         solidityNestedMappingSubquery.keys,
       );
       break;
-    case DataSubqueryType.BeaconValidator:
-      // WIP
-      const beaconValidatorSubquery = subquery.subqueryData as BeaconValidatorSubquery;
-      encodedSubquery = encodeBeaconValidatorSubquery();
+    case DataSubqueryType.ECDSA:
+      const { pubkey, r, s, msgHash } = subquery.subqueryData as ECDSASubquery;
+      encodedSubquery = encodeECDSASubquery(pubkey, r, s, msgHash);
       break;
     default:
       throw new Error("Invalid subquery type");
@@ -546,7 +543,20 @@ export function encodeSolidityNestedMappingSubquery(
   );
 }
 
-export function encodeBeaconValidatorSubquery(): string {
-  // WIP
-  return "";
+export function encodeECDSASubquery(
+  pubkey: [string, string],
+  r: string,
+  s: string,
+  msgHash: string,
+): string {
+  validateBytes32(pubkey[0]);
+  validateBytes32(pubkey[1]);
+  validateBytes32(r);
+  validateBytes32(s);
+  validateBytes32(msgHash);
+
+  return ethers.solidityPacked(
+    ["bytes32", "bytes32", "bytes32", "bytes32", "bytes32"],
+    [pubkey[0], pubkey[1], r, s, msgHash],
+  );
 }
