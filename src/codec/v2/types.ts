@@ -60,7 +60,13 @@ export interface AxiomV2Result {
   computeResultsHash: string;
 }
 
-export interface Subquery {}
+export interface Subquery {
+  /**
+   * The block number of the block that the subquery needs data from.
+   * `undefined` if no block is needed.
+   */
+  blockNumber?: number;
+}
 
 export interface StorageSubqueryV1 extends Subquery {
   blockNumber: number;
