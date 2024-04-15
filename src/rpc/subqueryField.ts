@@ -369,7 +369,7 @@ export async function getTxFieldValue(
   if (type === TxType.Eip4844) {
     logger.error(`EIP-4844 transactions are not yet supported`);
     return null;
-  } else if (type = TxType.OpSystem) {
+  } else if (type === TxType.OpSystem) {
     logger.error(`OP stack System transactions are not yet supported`);
     return null;
   }
