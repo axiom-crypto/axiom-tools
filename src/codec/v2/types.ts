@@ -190,8 +190,9 @@ export enum ReceiptField {
 }
 
 export enum TxType {
-  Legacy,
-  Eip2930,
-  Eip1559,
-  Eip4844,
+  Legacy = 0,
+  Eip2930 = 1,
+  Eip1559 = 2,
+  Eip4844 = 3,
+  OpSystem = 126, // 0x7E
 }
