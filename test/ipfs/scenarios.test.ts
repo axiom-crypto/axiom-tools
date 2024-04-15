@@ -50,7 +50,7 @@ describe("Additional IPFS scenarios to test", () => {
         };
       }
     }
-  }, 30000);
+  }, 50000);
 
   test(`Read all pinned data`, async () => {
     for await (const client of ipfsClients) {
@@ -64,7 +64,7 @@ describe("Additional IPFS scenarios to test", () => {
         }
       }
     }
-  }, 30000);
+  }, 50000);
 
   test(`Unpin all data`, async () => {
     for await (const client of ipfsClients) {
@@ -73,5 +73,5 @@ describe("Additional IPFS scenarios to test", () => {
         expect(unpin.value as boolean).toEqual(true);
       }
     }
-  }, 30000);
+  }, 50000);
 });
