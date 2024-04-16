@@ -523,7 +523,7 @@ function getNonexistentAccountFieldValue(fieldIdx: AccountField): string {
     case AccountField.StorageRoot:
       return CommonConstants.StorageHashEmpty;
     case AccountField.CodeHash:
-      return bytes32(0);
+      return CommonConstants.CodeHashEmpty;
     default:
       throw new Error(`Unknown AccountField index: ${fieldIdx}`);
   }
