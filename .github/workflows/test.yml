@@ -29,8 +29,9 @@ jobs:
     - name: Test with Jest
       run: |
         export PROVIDER_URI=${{ secrets.PROVIDER_URI }}
-        export PROVIDER_URI_GOERLI=${{ secrets.PROVIDER_URI_GOERLI }}
         export PROVIDER_URI_SEPOLIA=${{ secrets.PROVIDER_URI_SEPOLIA }}
+        export PROVIDER_URI_10=${{ secrets.PROVIDER_URI_10 }}
+        export PROVIDER_URI_8453=${{ secrets.PROVIDER_URI_8453 }}
         export PINATA_JWT=${{ secrets.PINATA_JWT }}
         export QUICKNODE_API_KEY=${{ secrets.QUICKNODE_API_KEY }}
         export QUICKNODE_IPFS_URL=${{ secrets.QUICKNODE_IPFS_URL }}
