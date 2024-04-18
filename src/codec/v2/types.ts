@@ -149,7 +149,7 @@ export enum DataSubqueryType {
   Transaction,
   Receipt,
   SolidityNestedMapping,
-  BeaconValidator,
+  ECDSA,
 }
 
 export enum HeaderField {
