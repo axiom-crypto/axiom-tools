@@ -11,6 +11,12 @@ import {
   AxiomV2DataQuery,
   bytes32,
   AxiomV2FeeData,
+  HeaderSubquery,
+  AccountSubquery,
+  StorageSubquery,
+  TxSubquery,
+  ReceiptSubquery,
+  SolidityNestedMappingSubquery,
 } from "../../../../src";
 
 
@@ -88,14 +94,14 @@ export const dataSubqueries: DataSubquery[] = [
       subqueryData: {
         blockNumber: BLOCK_NUMBER,
         fieldIdx: HeaderField.Miner,
-      },
+      } as HeaderSubquery,
     },
     {
       type: DataSubqueryType.Header,
       subqueryData: {
         blockNumber: BLOCK_NUMBER + 1,
         fieldIdx: HeaderField.GasLimit,
-      },
+      } as HeaderSubquery,
     },
     {
       type: DataSubqueryType.Account,
@@ -103,7 +109,7 @@ export const dataSubqueries: DataSubquery[] = [
         blockNumber: BLOCK_NUMBER,
         addr: WETH_ADDR,
         fieldIdx: AccountField.CodeHash,
-      },
+      } as AccountSubquery,
     },
     {
       type: DataSubqueryType.Storage,
@@ -111,7 +117,7 @@ export const dataSubqueries: DataSubquery[] = [
         blockNumber: BLOCK_NUMBER,
         addr: WETH_ADDR,
         slot: bytes32(1),
-      },
+      } as StorageSubquery,
     },
     {
       type: DataSubqueryType.Transaction,
@@ -119,7 +125,7 @@ export const dataSubqueries: DataSubquery[] = [
         blockNumber: 15060942,
         txIdx: 114,
         fieldOrCalldataIdx: TxField.To,
-      },
+      } as TxSubquery,
     },
     {
       type: DataSubqueryType.Receipt,
@@ -129,7 +135,7 @@ export const dataSubqueries: DataSubquery[] = [
         fieldOrLogIdx: 0,
         topicOrDataOrAddressIdx: 0,
         eventSchema: "0x255910aca2752f3c05fcb4a54d3d8d93bb809a9c8cc215d5eed2504d44cbd865",
-      },
+      } as ReceiptSubquery,
     },
     {
       type: DataSubqueryType.SolidityNestedMapping,
@@ -139,7 +145,7 @@ export const dataSubqueries: DataSubquery[] = [
         mappingSlot: bytes32(5),
         mappingDepth: 3,
         keys: [bytes32(WETH_ADDR), bytes32(WSOL_ADDR), bytes32(10000)],
-      },
+      } as SolidityNestedMappingSubquery,
     },
   ];
 export const dataQuery: AxiomV2DataQuery = {

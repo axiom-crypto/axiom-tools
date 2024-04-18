@@ -64,7 +64,7 @@ describe("Additional IPFS scenarios to test", () => {
         }
       }
     }
-  }, 30000);
+  }, 60000);
 
   test(`Unpin all data`, async () => {
     for await (const client of ipfsClients) {

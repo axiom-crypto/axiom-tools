@@ -29,6 +29,12 @@ import {
   getCallbackHash,
   AxiomV2FeeData,
   encodeFullQueryV2,
+  HeaderSubquery,
+  AccountSubquery,
+  StorageSubquery,
+  TxSubquery,
+  ReceiptSubquery,
+  SolidityNestedMappingSubquery,
 } from "../../../src";
 import {
   BLOCK_NUMBER,
@@ -277,14 +283,14 @@ describe("Encoder V2", () => {
         subqueryData: {
           blockNumber,
           fieldIdx,
-        },
+        } as HeaderSubquery,
       },
       {
         type: DataSubqueryType.Header,
         subqueryData: {
           blockNumber: blockNumber + 1,
           fieldIdx: fieldIdx + 1,
-        },
+        } as HeaderSubquery,
       },
       {
         type: DataSubqueryType.Account,
@@ -292,7 +298,7 @@ describe("Encoder V2", () => {
           blockNumber,
           addr,
           fieldIdx,
-        },
+        } as AccountSubquery,
       },
       {
         type: DataSubqueryType.Storage,
@@ -300,7 +306,7 @@ describe("Encoder V2", () => {
           blockNumber,
           addr,
           slot,
-        },
+        } as StorageSubquery,
       },
       {
         type: DataSubqueryType.Transaction,
@@ -308,7 +314,7 @@ describe("Encoder V2", () => {
           blockNumber: 15060942,
           txIdx: 114,
           fieldOrCalldataIdx,
-        },
+        } as TxSubquery,
       },
       {
         type: DataSubqueryType.Receipt,
@@ -318,7 +324,7 @@ describe("Encoder V2", () => {
           fieldOrLogIdx,
           topicOrDataOrAddressIdx,
           eventSchema: "0x255910aca2752f3c05fcb4a54d3d8d93bb809a9c8cc215d5eed2504d44cbd865",
-        },
+        } as ReceiptSubquery,
       },
       {
         type: DataSubqueryType.SolidityNestedMapping,
@@ -328,7 +334,7 @@ describe("Encoder V2", () => {
           mappingSlot,
           mappingDepth,
           keys,
-        },
+        } as SolidityNestedMappingSubquery,
       },
     ];
 
