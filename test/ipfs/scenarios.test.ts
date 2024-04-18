@@ -17,19 +17,19 @@ describe("Additional IPFS scenarios to test", () => {
     for await (const client of ipfsClients) {
       const pin = await client.pin(LARGE_DATA);
       if (pin.status - 200 > 99) {
-        throw new Error("Failed to write data to IPFS");
+        throw new Error(`Failed to write data to IPFS: ${pin.status}`);
       }
 
       const size = await client.getSize(pin.value as string);
       if (size.status - 200 > 99) {
-        throw new Error("Failed to get size of pinned data");
+        throw new Error(`Failed to get size of pinned data: ${size.status}`);
       }
       const diff = calculatePercentageDiff(size.value as number, LARGE_DATA.length);
       expect(diff).toBeLessThan(SIZE_DIFF_THRESHOLD);
 
       const read = await client.read(pin.value as string);
       if (read.status - 200 > 99) {
-        throw new Error("Failed to read data from IPFS");
+        throw new Error(`Failed to read data from IPFS: ${read.status}`);
       }
       expect(read.value as string).toEqual(LARGE_DATA);
     }
@@ -42,7 +42,7 @@ describe("Additional IPFS scenarios to test", () => {
         const data = generateRandomHexString(2,7);
         const pin = await client.pin(data);
         if (pin.status - 200 > 99) {
-          throw new Error("Failed to write data to IPFS");
+          throw new Error(`Failed to write data to IPFS: ${pin.status}`);
         }
         pinnedData[client.getName()] = {
           ...pinnedData[client.getName()],
@@ -50,7 +50,7 @@ describe("Additional IPFS scenarios to test", () => {
         };
       }
     }
-  }, 50000);
+  }, 100000);
 
   test(`Read all pinned data`, async () => {
     for await (const client of ipfsClients) {
@@ -58,13 +58,13 @@ describe("Additional IPFS scenarios to test", () => {
         for await (const [cid, data] of Object.entries(dataObj)) {
           const read = await client.read(cid);
           if (read.status - 200 > 99) {
-            throw new Error("Failed to read data from IPFS");
+            throw new Error(`Failed to read data from IPFS: ${read.status}`);
           }
           expect(read.value as string).toEqual(data);
         }
       }
     }
-  }, 60000);
+  }, 120000);
 
   test(`Unpin all data`, async () => {
     for await (const client of ipfsClients) {

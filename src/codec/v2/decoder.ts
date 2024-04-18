@@ -18,6 +18,7 @@ import {
   TxSubquery,
   AxiomV2FeeData,
   AxiomV2FullQuery,
+  ECDSASubquery,
 } from "./types";
 
 /**
@@ -68,7 +69,7 @@ export function decodeQueryV2(query: string): AxiomV2Query | null {
     userSalt,
     feeData,
     refundee,
-  }
+  };
 }
 
 export function decodeFullQueryV2(query: string): AxiomV2FullQuery | null {
@@ -125,7 +126,7 @@ export function decodeFullQueryV2(query: string): AxiomV2FullQuery | null {
     userSalt,
     feeData,
     refundee,
-  }
+  };
 }
 
 export function decodeDataQuery(reader: ByteStringReader): AxiomV2DataQuery | null {
@@ -193,7 +194,9 @@ export function decodeDataQuery(reader: ByteStringReader): AxiomV2DataQuery | nu
       case DataSubqueryType.SolidityNestedMapping:
         const solidityNestedMappingSubquery = decodeSolidityNestedMappingSubquery(reader);
         if (!solidityNestedMappingSubquery) {
-          console.warn(`Unable to decode solidity nested mapping subquery at index ${reader.currentIdx}`);
+          console.warn(
+            `Unable to decode solidity nested mapping subquery at index ${reader.currentIdx}`,
+          );
           return null;
         }
         subqueries.push({
@@ -201,15 +204,15 @@ export function decodeDataQuery(reader: ByteStringReader): AxiomV2DataQuery | nu
           subqueryData: solidityNestedMappingSubquery,
         });
         break;
-      case DataSubqueryType.BeaconValidator:
-        const beaconValidatorSubquery = decodeBeaconValidatorsSubquery(reader);
-        if (!beaconValidatorSubquery) {
-          console.warn(`Unable to decode beacon validator subquery at index ${reader.currentIdx}`);
+      case DataSubqueryType.ECDSA:
+        const ecdsaSubquery = decodeECDSASubquery(reader);
+        if (!ecdsaSubquery) {
+          console.warn(`Unable to decode ECDSA subquery at index ${reader.currentIdx}`);
           return null;
         }
         subqueries.push({
-          type: DataSubqueryType.BeaconValidator,
-          subqueryData: beaconValidatorSubquery,
+          type: DataSubqueryType.ECDSA,
+          subqueryData: ecdsaSubquery,
         });
         break;
       default:
@@ -222,7 +225,7 @@ export function decodeDataQuery(reader: ByteStringReader): AxiomV2DataQuery | nu
   return {
     sourceChainId,
     subqueries,
-  }
+  };
 }
 
 export function decodeComputeQuery(reader: ByteStringReader): AxiomV2ComputeQuery | null {
@@ -234,7 +237,7 @@ export function decodeComputeQuery(reader: ByteStringReader): AxiomV2ComputeQuer
       resultLen,
       vkey: [],
       computeProof: "",
-    }
+    };
   }
   const vkeyLen = reader.readInt(1);
   const vkey = reader.readFixedLenBytes32(vkeyLen);
@@ -245,7 +248,7 @@ export function decodeComputeQuery(reader: ByteStringReader): AxiomV2ComputeQuer
     resultLen,
     vkey,
     computeProof,
-  }
+  };
 }
 
 export function decodeCallback(reader: ByteStringReader): AxiomV2Callback | null {
@@ -255,7 +258,7 @@ export function decodeCallback(reader: ByteStringReader): AxiomV2Callback | null
   return {
     target,
     extraData,
-  }
+  };
 }
 
 export function decodeFeeData(reader: ByteStringReader): AxiomV2FeeData | null {
@@ -267,7 +270,7 @@ export function decodeFeeData(reader: ByteStringReader): AxiomV2FeeData | null {
     maxFeePerGas,
     callbackGasLimit,
     overrideAxiomQueryFee,
-  }
+  };
 }
 
 export function decodeResult(query: string): AxiomV2Result | null {
@@ -287,7 +290,7 @@ export function decodeResult(query: string): AxiomV2Result | null {
     dataResultsRoot,
     dataResultsPoseidonRoot,
     computeResultsHash,
-  }
+  };
 }
 
 export function decodeHeaderSubquery(reader: ByteStringReader): HeaderSubquery | null {
@@ -297,7 +300,7 @@ export function decodeHeaderSubquery(reader: ByteStringReader): HeaderSubquery |
   return {
     blockNumber,
     fieldIdx,
-  }
+  };
 }
 
 export function decodeAccountSubquery(reader: ByteStringReader): AccountSubquery | null {
@@ -309,7 +312,7 @@ export function decodeAccountSubquery(reader: ByteStringReader): AccountSubquery
     blockNumber,
     addr,
     fieldIdx,
-  }
+  };
 }
 
 export function decodeStorageSubquery(reader: ByteStringReader): StorageSubquery | null {
@@ -321,7 +324,7 @@ export function decodeStorageSubquery(reader: ByteStringReader): StorageSubquery
     blockNumber,
     addr,
     slot,
-  }
+  };
 }
 
 export function decodeTxSubquery(reader: ByteStringReader): TxSubquery | null {
@@ -333,7 +336,7 @@ export function decodeTxSubquery(reader: ByteStringReader): TxSubquery | null {
     blockNumber,
     txIdx,
     fieldOrCalldataIdx,
-  }
+  };
 }
 
 export function decodeReceiptSubquery(reader: ByteStringReader): ReceiptSubquery | null {
@@ -349,10 +352,12 @@ export function decodeReceiptSubquery(reader: ByteStringReader): ReceiptSubquery
     fieldOrLogIdx,
     topicOrDataOrAddressIdx,
     eventSchema,
-  }
+  };
 }
 
-export function decodeSolidityNestedMappingSubquery(reader: ByteStringReader): SolidityNestedMappingSubquery | null {
+export function decodeSolidityNestedMappingSubquery(
+  reader: ByteStringReader,
+): SolidityNestedMappingSubquery | null {
   const blockNumber = reader.readInt(4);
   const addr = reader.readBytes(20);
   const mappingSlot = reader.readBytes(32);
@@ -368,10 +373,19 @@ export function decodeSolidityNestedMappingSubquery(reader: ByteStringReader): S
     mappingSlot,
     mappingDepth,
     keys,
-  }
+  };
 }
 
-export function decodeBeaconValidatorsSubquery(reader: ByteStringReader): BeaconValidatorSubquery {
-  // WIP
-  return {}
+export function decodeECDSASubquery(reader: ByteStringReader): ECDSASubquery | null {
+  const pubkeyX = reader.readBytes(32);
+  const pubkeyY = reader.readBytes(32);
+  const r = reader.readBytes(32);
+  const s = reader.readBytes(32);
+  const msgHash = reader.readBytes(32);
+  return {
+    pubkey: [pubkeyX, pubkeyY],
+    r,
+    s,
+    msgHash,
+  };
 }
