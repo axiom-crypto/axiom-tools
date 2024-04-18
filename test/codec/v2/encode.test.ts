@@ -7,7 +7,6 @@ import {
   encodeTxSubquery,
   encodeReceiptSubquery,
   encodeSolidityNestedMappingSubquery,
-  encodeBeaconValidatorSubquery,
   getQueryHashV2,
   getDataQueryHash,
   getDataQueryHashFromSubqueries,
@@ -35,9 +34,14 @@ import {
   TxSubquery,
   ReceiptSubquery,
   SolidityNestedMappingSubquery,
+  encodeECDSASubquery,
 } from "../../../src";
 import {
   BLOCK_NUMBER,
+  MSGHASH,
+  PUBKEY,
+  R,
+  S,
   UNI_V3_FACTORY_ADDR,
   VITALIK_ADDR,
   WETH_ADDR,
@@ -48,6 +52,7 @@ import {
   computeQuery,
   dataQueryHash,
   dataSubqueries,
+  encodedEcdsaSubquery,
   extraData,
   feeData,
   k,
@@ -255,10 +260,13 @@ describe("Encoder V2", () => {
     );
   });
 
-  test("Encoding a beacon validator subquery", () => {
-    // WIP
-    const encoded = encodeBeaconValidatorSubquery();
-    expect(encoded).toEqual("");
+  test("Encoding an ECDSA subquery", () => {
+    const pubkey = PUBKEY;
+    const r = R;
+    const s = S;
+    const msgHash = MSGHASH;
+    const encoded = encodeECDSASubquery(pubkey, r, s, msgHash);
+    expect(encoded).toEqual(encodedEcdsaSubquery);
   });
 
   test("Encoding a DataQuery", () => {

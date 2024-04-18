@@ -25,9 +25,14 @@ import {
   decodeTxSubquery,
   bytes32,
   decodeFullQueryV2,
+  decodeECDSASubquery,
 } from "../../../src";
 import {
   BLOCK_NUMBER,
+  MSGHASH,
+  PUBKEY,
+  R,
+  S,
   UNI_V3_FACTORY_ADDR,
   VITALIK_ADDR,
   WETH_ADDR,
@@ -41,6 +46,7 @@ import {
   encodedCallback,
   encodedComputeQuery,
   encodedDataQuery,
+  encodedEcdsaSubquery,
   encodedFullQuery,
   encodedFullQueryInvalidVersion,
   encodedHeaderSubquery,
@@ -237,8 +243,17 @@ describe("Decoder V2", () => {
     expect(decodedQuery.keys).toEqual([key0, key1, key2]);
   });
 
-  test("Decoding a beacon validators subquery", () => {
-    // WIP
+  test("Decoding an ECDSA subquery", () => {
+    const reader = new ByteStringReader(encodedEcdsaSubquery);
+    const decodedQuery = decodeECDSASubquery(reader);
+    if (!decodedQuery) {
+      throw new Error("Decoding failed");
+    }
+    expect(decodedQuery.pubkey[0]).toEqual(PUBKEY[0]);
+    expect(decodedQuery.pubkey[1]).toEqual(PUBKEY[1]);
+    expect(decodedQuery.r).toEqual(R);
+    expect(decodedQuery.s).toEqual(S);
+    expect(decodedQuery.msgHash).toEqual(MSGHASH);
   });
 
   test("Decoding a DataQuery", () => {
