@@ -1,6 +1,10 @@
 {
   "name": "@axiom-crypto/tools",
+<<<<<<< HEAD
   "version": "2.1.1-alpha.2",
+=======
+  "version": "2.1.1-alpha.0",
+>>>>>>> 98c3474 (feat: add ECDSA subquery)
   "description": "Useful data, field, and byte manipulation tools for Axiom.",
   "author": "Intrinsic Technologies",
   "license": "MIT",
