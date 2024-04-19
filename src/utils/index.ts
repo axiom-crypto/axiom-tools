@@ -4,3 +4,4 @@ export * from "./storage";
 export * from "./byteStringReader";
 export * from "./evm";
 export * from "./rlp";
+export * from "./gasCalc";

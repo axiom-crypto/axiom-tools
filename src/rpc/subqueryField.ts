@@ -369,6 +369,9 @@ export async function getTxFieldValue(
   if (type === TxType.Eip4844) {
     logger.error(`EIP-4844 transactions are not yet supported`);
     return null;
+  } else if (type === TxType.OpSystem) {
+    logger.error(`OP stack System transactions are not yet supported`);
+    return null;
   }
   const value = getValue(tx, type);
 
@@ -486,6 +489,9 @@ export async function getReceiptFieldValue(
 
   if (Number(receipt?.type) === TxType.Eip4844) {
     logger.error(`EIP-4844 transaction receipts are not yet supported`);
+    return null;
+  } else if (Number(receipt?.type) === TxType.OpSystem) {
+    logger.error(`OP stack System transaction receipts are not yet supported`);
     return null;
   }
 
