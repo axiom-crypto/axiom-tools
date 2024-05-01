@@ -10,6 +10,7 @@ import {
   DataSubquery,
   DataSubqueryType,
   ECDSASubquery,
+  Groth16Subquery,
   HeaderSubquery,
   ReceiptSubquery,
   SolidityNestedMappingSubquery,
@@ -343,6 +344,10 @@ export function encodeDataSubquery(subquery: DataSubquery): string {
       const { pubkey, r, s, msgHash } = subquery.subqueryData as ECDSASubquery;
       encodedSubquery = encodeECDSASubquery(pubkey, r, s, msgHash);
       break;
+    case DataSubqueryType.Groth16:
+      const groth16Subquery = subquery.subqueryData as Groth16Subquery;
+      encodedSubquery = encodeGroth16Subquery(groth16Subquery.bytes);
+      break;
     default:
       throw new Error("Invalid subquery type");
   }
@@ -559,4 +564,10 @@ export function encodeECDSASubquery(
     ["bytes32", "bytes32", "bytes32", "bytes32", "bytes32"],
     [pubkey[0], pubkey[1], r, s, msgHash],
   );
+}
+
+export function encodeGroth16Subquery(bytes: string[]): string {
+  const types = new Array(AxiomV2CircuitConstant.MaxSubqueryInputs).fill("bytes32");
+  bytes.forEach(validateBytes32);
+  return ethers.solidityPacked(types, bytes);
 }

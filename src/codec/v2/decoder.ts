@@ -19,6 +19,7 @@ import {
   AxiomV2FeeData,
   AxiomV2FullQuery,
   ECDSASubquery,
+  Groth16Subquery
 } from "./types";
 
 /**
@@ -215,6 +216,17 @@ export function decodeDataQuery(reader: ByteStringReader): AxiomV2DataQuery | nu
           subqueryData: ecdsaSubquery,
         });
         break;
+      case DataSubqueryType.Groth16:
+        const groth16Subquery = decodeGroth16Subquery(reader);
+        if (!groth16Subquery) {
+          console.warn(`Unable to decode Groth16 subquery at index ${reader.currentIdx}`);
+          return null;
+        }
+        subqueries.push({
+          type: DataSubqueryType.Groth16,
+          subqueryData: groth16Subquery,
+        });
+        break;
       default:
         throw new Error(`Unknown subquery type ${type} at index ${reader.currentIdx}`);
     }
@@ -387,5 +399,15 @@ export function decodeECDSASubquery(reader: ByteStringReader): ECDSASubquery | n
     r,
     s,
     msgHash,
+  };
+}
+
+export function decodeGroth16Subquery(reader: ByteStringReader): Groth16Subquery | null {
+  let bytes: string[] = [];
+  for (let i = 0; i < AxiomV2CircuitConstant.MaxSubqueryInputs; i++) {
+    bytes.push(reader.readBytes(32));
+  }
+  return {
+    bytes,
   };
 }

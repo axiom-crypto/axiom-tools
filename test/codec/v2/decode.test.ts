@@ -26,9 +26,11 @@ import {
   bytes32,
   decodeFullQueryV2,
   decodeECDSASubquery,
+  decodeGroth16Subquery,
 } from "../../../src";
 import {
   BLOCK_NUMBER,
+  GROTH16_SUBQUERY,
   MSGHASH,
   PUBKEY,
   R,
@@ -49,6 +51,7 @@ import {
   encodedEcdsaSubquery,
   encodedFullQuery,
   encodedFullQueryInvalidVersion,
+  encodedGroth16Subquery,
   encodedHeaderSubquery,
   encodedQuery,
   encodedQueryNoCompute,
@@ -255,6 +258,15 @@ describe("Decoder V2", () => {
     expect(decodedQuery.s).toEqual(S);
     expect(decodedQuery.msgHash).toEqual(MSGHASH);
   });
+
+  test("Decoding a Groth16 subquery", () => {
+    const reader = new ByteStringReader(encodedGroth16Subquery);
+    const decodedQuery = decodeGroth16Subquery(reader);
+    if (!decodedQuery) {
+      throw new Error("Decoding failed");
+    }
+    expect(decodedQuery.bytes).toEqual(GROTH16_SUBQUERY);
+  })
 
   test("Decoding a DataQuery", () => {
     const reader = new ByteStringReader(encodedDataQuery);

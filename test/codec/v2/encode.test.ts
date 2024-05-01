@@ -35,9 +35,11 @@ import {
   ReceiptSubquery,
   SolidityNestedMappingSubquery,
   encodeECDSASubquery,
+  encodeGroth16Subquery,
 } from "../../../src";
 import {
   BLOCK_NUMBER,
+  GROTH16_SUBQUERY,
   MSGHASH,
   PUBKEY,
   R,
@@ -53,6 +55,7 @@ import {
   dataQueryHash,
   dataSubqueries,
   encodedEcdsaSubquery,
+  encodedGroth16Subquery,
   extraData,
   feeData,
   k,
@@ -267,6 +270,12 @@ describe("Encoder V2", () => {
     const msgHash = MSGHASH;
     const encoded = encodeECDSASubquery(pubkey, r, s, msgHash);
     expect(encoded).toEqual(encodedEcdsaSubquery);
+  });
+
+  test("Encoding a Groth16 subquery", () => {
+    const bytes = GROTH16_SUBQUERY;
+    const encoded = encodeGroth16Subquery(bytes);
+    expect(encoded).toEqual(encodedGroth16Subquery);
   });
 
   test("Encoding a DataQuery", () => {
