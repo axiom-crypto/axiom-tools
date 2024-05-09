@@ -1,6 +1,6 @@
 {
   "name": "@axiom-crypto/tools",
-  "version": "2.1.1-alpha.2",
+  "version": "2.1.1-alpha.3",
   "description": "Useful data, field, and byte manipulation tools for Axiom.",
   "author": "Intrinsic Technologies",
   "license": "MIT",

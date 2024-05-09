@@ -125,6 +125,11 @@ export interface ECDSASubquery extends Subquery {
   msgHash: string;
 }
 
+export interface Groth16Subquery extends Subquery {
+  /// An array of bytes32 strings
+  bytes: string[];
+}
+
 export interface BeaconValidatorSubquery extends Subquery {
   // WIP
 }
@@ -150,6 +155,7 @@ export enum DataSubqueryType {
   Receipt,
   SolidityNestedMapping,
   ECDSA,
+  Groth16,
 }
 
 export enum HeaderField {
