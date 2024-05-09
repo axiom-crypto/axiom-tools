@@ -126,6 +126,7 @@ export interface ECDSASubquery extends Subquery {
 }
 
 export interface Groth16Subquery extends Subquery {
+  /// An array of bytes32 strings
   bytes: string[];
 }
 

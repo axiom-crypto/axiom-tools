@@ -566,6 +566,9 @@ export function encodeECDSASubquery(
   );
 }
 
+/**
+ * @param bytes An array of bytes32 strings.
+ */
 export function encodeGroth16Subquery(bytes: string[]): string {
   const types = new Array(AxiomV2CircuitConstant.MaxSubqueryInputs).fill("bytes32");
   bytes.forEach(validateBytes32);
