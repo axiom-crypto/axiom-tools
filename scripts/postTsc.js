@@ -2,9 +2,6 @@
 
 const fs = require('fs');
 const packageJson = require('../package.json');
-// // const loadJSON = (path) => JSON.parse(fs.readFileSync(new URL(path, import.meta.url)));
-// loadJSON = (path) => JSON.parse(fetch)
-// const packageJson = loadJSON('../package.json');
 
 // Copies a modified version of package.json to the /dist folder
 function copyPackageJson() {
@@ -30,6 +27,11 @@ function copyReadme() {
   fs.copyFileSync('./readme.md', './dist/readme.md');
 }
 
+function copyCircuitJson() {
+  fs.copyFileSync('./src/constants/v2/circuit.json', './dist/constants/v2/circuit.json');
+}
+
 copyPackageJson();
 copyReadme();
+copyCircuitJson();
 // writeCjsEsmPackageJson();
